@@ -5,8 +5,7 @@
 		"downloadsummarypanel"
 		{
 			style=CDownloadSummaryPanel
-			tall="120"
-		
+			tall="130"
 		}
 		
 		"header"
@@ -27,7 +26,7 @@
 	    {
 			"ControlName"	    "Label"
 			"labelText"	    "%CurrentDLRate%"
-			style=bigtext
+			style=bigtextNonUpper
 	    }
 	
 		"peak_download_rate"
@@ -41,7 +40,7 @@
 		{
 			"ControlName"	    "Label"
 			"labelText"	    "%PeakDLRate%"
-			style="bigtext"
+			style="bigtextNonUpper"
 		}
 	
 		"total_downloaded"
@@ -54,19 +53,22 @@
 		{
 			"ControlName"	    "Label"
 			"labelText"	    "%TotalDownloaded%"
-			style="bigtext"
+			style="bigtextNonUpper"
 		}
-		"disk_status_image"
+		
+		"disk_status_value"
 		{
-			"ControlName"	    "ImagePanel"
-			"image"		"graphics/icon_disk_activity_idle.tga"
+			"ControlName"	    "Label"
+			"labelText"	    "%DiskUsage%"
+			style="bigtextNonUpper"
 		}
+		
 		"disk_status_label"
 		{
 			"ControlName"	    "Label"
-			"labelText"	    "#steam_downloads_diskstatus_idle"
+			"labelText"	    "#steam_downloads_diskusage"
 			style="bigtextlabel"
-		}		
+		}
 		
 		"pauseresumeallbutton"
 		{
@@ -108,15 +110,20 @@
 			group = "ShowWhenAutoUpdateWindow"
 		}			
 	    
-		graphpanel {	controlname="GraphPanel"	 style="infoGraphic" group="HideOnCompletion"  zpos="-1" }		   
+		net_graphpanel { controlname="GraphPanel" style="NetGraphPanel" group="HideOnCompletion"  zpos="-2" }
+		disc_graphpanel { controlname="GraphPanel" style="DiscGraphPanel" group="HideOnCompletion"  zpos="-1" }		 
+		
+		"disk_legend_label" { ControlName="Label" labelText="#steam_downloads_legenddisk" style="throttleLabel" }
+		"net_legend_label" { ControlName="Label" labelText="#steam_downloads_legendnet" style="throttleLabel" }
+		"disk_legend_panel" { ControlName="Panel" style="diskLegendPanel" }
+		"net_legend_panel" { ControlName="Panel" style="netLegendPanel" }
 	}
     
     
 	colors
 	{
-		panelBackground="16 16 16 255"
-		//panelBackground = "12 27 38 255"
-		panelBackgroundTransparent = "0 0 0 0"
+		panelBackground = "ClayBG"
+		panelBackgroundTransparent = "12 27 38 0"
 	}
   
 	styles
@@ -130,14 +137,15 @@
 		throttleLabel
 		{
 			bgcolor	   none
-			font-size   "14"
-			textcolor   "propertysheetbg"
+			font-size   "15"
+			textcolor   "label2"
 			padding-top	"0"
+			font-style="uppercase"
 	    } 
 		throttleValue
 		{
 			bgcolor	   none
-			font-size   "14"
+			font-size   "15"
 			textcolor   "text"
 			padding-top	"0"
 		}
@@ -150,21 +158,31 @@
 		bigtext
 		{
 		 font-family=basefont
-		 font-size=14
+		 font-size=17
+		 font-style="uppercase"
 		 textcolor="text"
 		}
+		
+		bigtextNonUpper
+		{
+		 font-family=basefont
+		 font-size=17
+		 textcolor="text"
+		}		
 		
 		bigtextlabel 
 		{
 		 font-family=basefont
-		 font-size=14
-		 textcolor="propertysheetbg"
+		 font-size=17
+		 font-style="uppercase"
+		 textcolor="label2"
 		}
 		
 		bigtextHeader 
 		{
 		 font-family=basefont
-		 font-size=14
+		 font-size=17
+		 font-style="uppercase"
 		 textcolor="label2"
 		}
 	
@@ -172,129 +190,134 @@
 		bigTextNumbers 
 		{
 		 font-family=basefont
-		 font-size="14"
+		 font-size="17"
 		 textcolor="text"
+		 font-style="uppercase"
 		}
-	
-	
 		
 		PauseButton
 		{   
-			inset="23 0	0 0"
+	
 			font-family = basefont
+			font-size="16"
+			inset = "4 0 0 0"
 			textcolor = White
-			render
-			{
-				1="image( x0 + 6, y0 + 4, x1, y1, graphics/icon_pause )"
-			}
 			render_bg {
 				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, ButtonBorder )"  // top
 				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, ButtonBorder )"  // bottom
 				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, ButtonBorder )"  // left
 				4="fill( x1 - 1, y0 + 1, x1, y1 - 1, ButtonBorder )"  // right
 
-				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, ClayEnabled )" // inside
+				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, LightClayButtonBG )" // inside
 
-				6="fill( x0+1, y0+1, x0+2, y0+2, ButtonBorderCorner )"  // top-left
-				7="fill( x1-2, y0+1, x1-1, y0+2, ButtonBorderCorner )"  // top-right
-				8="fill( x0+1, y1-2, x0+2, y1-1, ButtonBorderCorner )"  // bottom-left
-				9="fill( x1-2, y1-2, x1-1, y1-1, ButtonBorderCorner )"  // bottom-right
-		}
+				6="fill( x0+1, y0+1, x0+2, y0+2, PageButtonBorderCorner )"  // top-left
+				7="fill( x1-2, y0+1, x1-1, y0+2, PageButtonBorderCorner )"  // top-right
+				8="fill( x0+1, y1-2, x0+2, y1-1, PageButtonBorderCorner )"  // bottom-left
+				9="fill( x1-2, y1-2, x1-1, y1-1, PageButtonBorderCorner )"  // bottom-right
+			}
 		}
 	   
-		PauseButton:hover
-		{
-			textcolor = Over
-		}
-
-		PauseButton:active
-		{
-			inset="23 0	0 0"
-			textcolor = Over
-			render
-			{
-				1="image( x0 + 6, y0 + 4, x1, y1, graphics/icon_pause )"
-			}
+		PauseButton:Hover
+		{	  
+			font-family = basefont
+			font-size="16"
+			inset = "4 0 0 0"
+			textcolor = Maize
 			render_bg {
-				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, Over )"  // top
-				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, Over )"  // bottom
-				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, Over )"  // left
-				4="fill( x1 - 1, y0 + 1, x1, y1 - 1, Over )"  // right
+				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, ButtonBorder )"  // top
+				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, ButtonBorder )"  // bottom
+				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, ButtonBorder )"  // left
+				4="fill( x1 - 1, y0 + 1, x1, y1 - 1, ButtonBorder )"  // right
 
-				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, ClayEnabled )" // inside
+				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, LightClayButtonBG )" // inside
 
-			6="fill( x0+1, y0+1, x0+2, y0+2, ButtonBorderCornerSelected )"  // top-left
-			7="fill( x1-2, y0+1, x1-1, y0+2, ButtonBorderCornerSelected )"  // top-right
-			8="fill( x0+1, y1-2, x0+2, y1-1, ButtonBorderCornerSelected )"  // bottom-left
-			9="fill( x1-2, y1-2, x1-1, y1-1, ButtonBorderCornerSelected )"  // bottom-right
+				6="fill( x0+1, y0+1, x0+2, y0+2, PageButtonBorderCorner )"  // top-left
+				7="fill( x1-2, y0+1, x1-1, y0+2, PageButtonBorderCorner )"  // top-right
+				8="fill( x0+1, y1-2, x0+2, y1-1, PageButtonBorderCorner )"  // bottom-left
+				9="fill( x1-2, y1-2, x1-1, y1-1, PageButtonBorderCorner )"  // bottom-right
 			}
 		}
 			
 		ResumeButton
-		{   
-			inset="23 0	0 0"
+		{	  
+
 			font-family = basefont
+			font-size="16"
+			inset = "4 0 0 0"
 			textcolor = White
-			render
-			{
-				1="image( x0 + 6, y0 + 4, x1, y1, graphics/icon_install )"
-			}
 			render_bg {
 				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, ButtonBorder )"  // top
 				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, ButtonBorder )"  // bottom
 				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, ButtonBorder )"  // left
 				4="fill( x1 - 1, y0 + 1, x1, y1 - 1, ButtonBorder )"  // right
 
-				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, ClayEnabled )" // inside
+				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, LightClayButtonBG )" // inside
 
-				6="fill( x0+1, y0+1, x0+2, y0+2, ButtonBorderCorner )"  // top-left
-				7="fill( x1-2, y0+1, x1-1, y0+2, ButtonBorderCorner )"  // top-right
-				8="fill( x0+1, y1-2, x0+2, y1-1, ButtonBorderCorner )"  // bottom-left
-				9="fill( x1-2, y1-2, x1-1, y1-1, ButtonBorderCorner )"  // bottom-right
-		}
+				6="fill( x0+1, y0+1, x0+2, y0+2, PageButtonBorderCorner )"  // top-left
+				7="fill( x1-2, y0+1, x1-1, y0+2, PageButtonBorderCorner )"  // top-right
+				8="fill( x0+1, y1-2, x0+2, y1-1, PageButtonBorderCorner )"  // bottom-left
+				9="fill( x1-2, y1-2, x1-1, y1-1, PageButtonBorderCorner )"  // bottom-right
+			}
 		}
 	   
-		ResumeButton:hover
-		{
-			textcolor = Over
-		}
-
-		ResumeButton:active
-		{
-			inset="23 0	0 0"
-			textcolor = Over
-			render
-			{
-				1="image( x0 + 6, y0 + 4, x1, y1, graphics/icon_install )"
-			}
+		ResumeButton:Hover
+		{	  
+			font-family = basefont
+			font-size="16"
+			inset = "4 0 0 0"
+			textcolor = Maize
 			render_bg {
-				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, Over )"  // top
-				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, Over )"  // bottom
-				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, Over )"  // left
-				4="fill( x1 - 1, y0 + 1, x1, y1 - 1, Over )"  // right
+				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, ButtonBorder )"  // top
+				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, ButtonBorder )"  // bottom
+				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, ButtonBorder )"  // left
+				4="fill( x1 - 1, y0 + 1, x1, y1 - 1, ButtonBorder )"  // right
 
-				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, ClayEnabled )" // inside
+				5="fill( x0 + 1, y0 + 1, x1 - 1, y1 - 1, LightClayButtonBG )" // inside
 
-			6="fill( x0+1, y0+1, x0+2, y0+2, ButtonBorderCornerSelected )"  // top-left
-			7="fill( x1-2, y0+1, x1-1, y0+2, ButtonBorderCornerSelected )"  // top-right
-			8="fill( x0+1, y1-2, x0+2, y1-1, ButtonBorderCornerSelected )"  // bottom-left
-			9="fill( x1-2, y1-2, x1-1, y1-1, ButtonBorderCornerSelected )"  // bottom-right
+				6="fill( x0+1, y0+1, x0+2, y0+2, PageButtonBorderCorner )"  // top-left
+				7="fill( x1-2, y0+1, x1-1, y0+2, PageButtonBorderCorner )"  // top-right
+				8="fill( x0+1, y1-2, x0+2, y1-1, PageButtonBorderCorner )"  // bottom-left
+				9="fill( x1-2, y1-2, x1-1, y1-1, PageButtonBorderCorner )"  // bottom-right
 			}
 		}
-		
-		infoGraphic
+		  
+		NetGraphPanel
 		{
-			bgcolor   "none"
-			textcolor "Maize"
-			inset="0 3 3 3"
+			bgcolor   "none"	
+			textcolor "highlight5"
 			render_bg
 			{
 				// no background
+				// 0="fill( x0, y0, x1,	y1, red	)"
 			}
-			render
+		}
+		
+		DiscGraphPanel
+		{
+			bgcolor   "none"	
+			textcolor="Maize"
+			render_bg
 			{
-				0="fill( x0, y0, x0+125,	y1, panelBackground)"
-				1="gradient_horizontal( x0+125, y0, x0+275, y1, panelBackground, panelBackground)"
+				// no background
+				// 0="fill( x0, y0, x1,	y1, red	)"
+			}
+		}
+		
+		DiskLegendPanel
+		{
+			render_bg
+			{
+				// background fill
+				0="fill( x0, y0, x1,y1, Maize )"
+			}
+		}
+		
+		NetLegendPanel
+		{
+			render_bg
+			{
+				// background fill
+				0="fill( x0, y0, x1,y1, highlight5 )"
 			}
 		}
 	}
@@ -303,28 +326,41 @@
 	{
 		
 		//set aside some room for the	header section
-		region {	name=head	dir=down x=10 y=10 height=124	width=max	margin-right=0	}
-		region  {	name=graph width=1262 y=12 height=170 }			  
+		region { name=head	dir=down x=10 y=10 height=max	width=max	margin-right=0	}
+		
+		region { name=legend align=right width=90 margin-top=60	}
+		
 		region { name=left_column x=0	y=21	 width=max  region=head }
 		region { name=middle_column x=200 y=0 width=max  region=head }
 		
-		place { control="GraphPanel" region="head" x=18 width="max"	height="75" margin-top=27 margin-right=14 }				   
+		// graph
+		place { control="net_graphpanel" region=head x=182 y=0 width="max" height="104" margin-right=112 }				   
+		place { control="disc_graphpanel" region=head x=182 y=0 width="max" height="104" margin-right=112 }
 		
+		// graph legend
+		place { control="net_legend_panel" region=legend y=3 x=0 width=9 height=9 }
+		place { control="net_legend_label" region=legend y=1 x=12 }
+		
+		place { control="disk_legend_panel" region=legend y=16 x=0  width=9 height=9 }
+		place { control="disk_legend_label" region=legend y=14 x=12 }
+					
 		// put NETWORK	USAGE in the top left
 		place { control="header"	region=head dir=down x=0	y=0	}
 		
 		// top right
-		place { control="pauseresumeallbutton" region=head align=right x=490 margin-right=16	margin-top=0 }
+		place { control="pauseresumeallbutton" region=head align=right margin-right=10	margin-top=0 }
 		
 		// three rows of network	usage underneath the header
 		place { region=left_column  control="download_rate_value,download_rate" spacing=4 }
 		place { region=left_column  control="peak_download_rate_value, peak_download_rate" spacing=4 y=22 align=top }
-		place { region=left_column  control="total_downloaded_value, total_downloaded" spacing= 4	y=44	align=top	}
-		place { region=left_column  control="disk_status_image, disk_status_label" spacing= 4	y=66	align=top	}
+		place { region=left_column  control="total_downloaded_value, total_downloaded" spacing=4 y=44	align=top	}
+		place { region=left_column  control="disk_status_value, disk_status_label" spacing=4 y=66 align=top	}
 		
 		// throttling info
 		place { region=middle_column controls="blackout_label, blackout_value" spacing=4 }
 		place { region=middle_column control="throttling_label" start=blackout_label dir=down margin-top=4 }
 		place { region=middle_column control="throttling_value" start=throttling_label dir=right margin-left=4 }
+		
+		
 	}
 }

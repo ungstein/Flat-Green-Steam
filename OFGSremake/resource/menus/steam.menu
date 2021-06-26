@@ -13,13 +13,7 @@
 		
 	    // check for updates appears in the system-managed "steam" menu on the mac
 		CheckForUpdates		[!$OSX]		{	text="#steam_menu_checkforupdates"		command="CheckForUpdates" }
-
-		// one of these will be invisible
-		UpdateVideoDrivers	[$WINDOWS||$LINUX]	{	text="#steam_menu_updatevendorgraphicscard"		command="UpdateVideoDrivers" }
-		Divider				[$WINDOWS||$LINUX]	{}
-
-		CheckForVideoDriverUpdates	[$WINDOWS||$LINUX]	{	text="#steam_menu_checkforvideodriverupdates"	command="CheckForVideoDriverUpdates" }
-		Divider				[$WINDOWS||$LINUX]	{}
+		Divider				[!$OSX]	{}
 
 		BackupGames						{	text="#steam_menu_backupgames"			command="backupgames" }
 		Divider				[!$OSX]		{}
@@ -32,17 +26,19 @@
 	View
 	{
 		text="#steam_menu_view"
-		
-		GamesDetails					{	text="#steam_menu_games_details"		shellcmd="steam://nav/games/details" }
-		GamesList						{	text="#steam_menu_games_list"			shellcmd="steam://nav/games/list" }
-		GamesGrid						{	text="#steam_menu_games_grid"			shellcmd="steam://nav/games/grid" }
+
+		Library							{	text="#steam_menu_library"				shellcmd="steam://nav/games" }
+		Hidden							{	text="#steam_menu_hidden_games"			shellcmd="steam://nav/library/collection/hidden" }
+		Downloads						{	text="#steam_menu_downloads"			shellcmd="steam://open/downloads" }
 		Divider							{}
 		MiniMode			[!$OSX]		{	text="#steam_menu_minimode"				shellcmd="steam://open/minigameslist" }
 		LargeMode			[!$OSX]		{	text="#steam_menu_largemode"			shellcmd="steam://open/largegameslist" }
-		StartVR							{	text="#steam_menu_startvr"				command="startvr" }
 		BigPictureMode					{ text="#steam_menu_bigpicturemode" 		shellcmd="steam://open/bigpicture" } 
 		Divider							{}
-		MusicDetails					{	text="#steam_menu_view_music_details"			shellcmd="steam://nav/music/details" }
+		StartVR							{	text="#steam_menu_startvr"				shellcmd="steam://run/250820" }
+		Divider							{}
+		ExitVR							{	text="#steam_menu_exitvr"				command="exitvr" }
+		Divider							{}
 		MusicPlayer						{	text="#steam_menu_view_musicplayer"		shellcmd="steam://open/musicplayer" }
 		Divider							{}
 		Friends							{	text="#steam_menu_friends"				shellcmd="steam://open/friends" }
@@ -50,7 +46,8 @@
 		Servers							{	text="#steam_menu_servers"				shellcmd="steam://open/servers" }
 		Screenshots						{	text="#steam_screenshots"				command="Screenshots" }
 		Inventory						{	text="#steam_inventory"					shellcmd="steam://open/inventory" }
-		Divider							{}
+		NewForYou						{	text="#SteamUI_GameProperties_UpdateNews"		shellcmd="steam://open/newforyou" }
+		Divider				[!$OSX]		{}
 		Settings			[!$OSX]		{	text="#steam_menu_settings"				command="Settings" }
 	}
 	
@@ -61,13 +58,15 @@
 		ViewFriends						{	text="#steam_menu_view_friends"			shellcmd="steam://open/friends" }
 		Divider							{}
 		AddFriend						{	text="#steam_menu_add_friend"			shellcmd="steam://friends/add" }
+		EditProfileNameAvatar			{	text="#steam_menu_edit_profile_name_avatar"	shellcmd="steam://url/SteamIDEditPage" }
 		Divider							{}
-		Online							{	text="#friends_online"					shellcmd="steam://friends/status/online"		checkable=1 }
-		Away							{	text="#friends_away"					shellcmd="steam://friends/status/away"			checkable=1 }
-		Play							{	text="#friends_lookingtoplay"			shellcmd="steam://friends/status/play"			checkable=1 }
-		Trade							{	text="#friends_lookingtotrade"			shellcmd="steam://friends/status/trade"			checkable=1 }
-		Busy							{	text="#friends_busy"					shellcmd="steam://friends/status/busy"			checkable=1 }
-		Offline							{	text="#friends_offline"					shellcmd="steam://friends/status/offline"		checkable=1 }
+		Online							{	text="#friends_online"					shellcmd="steam://friends/status/online"		checkable=1		autocheck=0 }
+		Away							{	text="#friends_away"					shellcmd="steam://friends/status/away"			checkable=1		autocheck=0 }
+		Play							{	text="#friends_lookingtoplay"			shellcmd="steam://friends/status/play"			checkable=1		autocheck=0 }
+		Trade							{	text="#friends_lookingtotrade"			shellcmd="steam://friends/status/trade"			checkable=1		autocheck=0 }
+		Busy							{	text="#friends_busy"					shellcmd="steam://friends/status/busy"			checkable=1		autocheck=0 }
+		Invisible						{	text="#friends_invisible"				shellcmd="steam://friends/status/invisible"		checkable=1		autocheck=0 }
+		Offline							{	text="#friends_offline"					shellcmd="steam://friends/status/offline"		checkable=1		autocheck=0 }
 		Divider							{}
 		SortByName						{	text="#steam_menu_friends_sortbyname"	shellcmd="steam://friends/settings/sortbyname"	checkable=1 }
 		ShowAvatars						{	text="#steam_menu_friends_showavatars"	shellcmd="steam://friends/settings/showavatars"	checkable=1 }

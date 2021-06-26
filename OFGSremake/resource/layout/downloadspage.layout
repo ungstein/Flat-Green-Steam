@@ -23,15 +23,7 @@
 	{
 		DownloadsPageStyle
 		{
-			bgcolor=ClayBG
-			render
-			{
-				// lines around
-				0="fill( x0 + 1, y0, x1 - 1, y0+1, ClayBG )"  // top
-				0="fill( x0, y0 + 1, x0+1, y1 - 1, ClayBG )"  // left
-				0="fill( x1 - 1, y0 + 1, x1, y1 - 1, ClayBG )"  // right
-				0="fill( x0 + 1, y1-1, x1 - 2, y1, ClayBG )"  // bottom
-			}			
+			bgcolor=clientbg
 		}
 	}
 

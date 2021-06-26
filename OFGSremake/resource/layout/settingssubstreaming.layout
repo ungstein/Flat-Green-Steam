@@ -66,11 +66,9 @@
 	
 	layout
 	{
-		region { name=bottom margin-top=240  width=275 height=max }
-
 		place
 		{
-			control="DescriptionLabel,RemoteClientList,EnableStreaming"
+			control="DescriptionLabel,EnableStreaming,RemoteClientList"
 			dir=down
 			align=top
 			width=max
@@ -80,26 +78,41 @@
 			spacing=10
 		}
 		
-		place { region=bottom control=HostDivider width=max x=20 y=0 }
-		place { region=bottom control=HostLabel width=max x=20 y=10 }
-		place { region=bottom control=UnsupportedPlatform width=max x=20 y=35 }
-		place { region=bottom control=AdvancedHostOptions x=20 y=35 }
-		
-		place { region=bottom control=ClientDivider width=max x=20 y=70 }
-		place { region=bottom control=ClientLabel width=max x=20 y=80 }
+		place { start="RemoteClientList" control="Pair" dir=down margin-top=10 width=155 }
+		place { start="Pair" control="Unpair" dir=right margin-left=15 width=155 }
+		place { start="Unpair" control="SetPIN" dir=right margin-left=15 width=155 }
+
 		place
 		{
-			control="QualityFast,QualityBalanced,QualityBeautiful"
-			region=bottom
-			dir=right
-			align=top
-			width=max
-			spacing=10
-			x=20
-			y=100
+			start="Pair"
+			control="P2PScopeLabel"
+			dir=down
+			width=400
+			margin-top=15
 		}
-		place { region=bottom control=AdvancedClientOptions x=20 y=140 }
+		place
+		{
+			start="P2PScopeLabel"
+			control="P2PScope"
+			dir=down
+			width=max
+			height=24
+			margin-right=20
+			margin-top=4
+		}
 		
-		place { region=bottom control=SupportInformationLabel x=20 y=230 }
+		place { start="P2PScope" control="HostDivider" dir=down margin-top=15 width=475 }
+		place { start="HostDivider" control="HostLabel" dir=down margin-top=10 width=max }
+		place { start="HostLabel" control="UnsupportedPlatform" dir=down margin-top=10 width=max }
+		place { start="HostLabel" control="AdvancedHostOptions" dir=down margin-top=10 }
+		
+		place { start="HostDivider" control="ClientDivider" dir=down margin-top=70 width=475 }
+		place { start="ClientDivider" control="ClientLabelLocal" dir=down margin-top=10 width=max }
+		place { start="ClientDivider" control="ClientLabelRemote" dir=down margin-top=10 width=max }
+		place { start="ClientDivider" control="QualityFast" dir=down margin-top=30 width=100 }
+		place { start="QualityFast" control="QualityBalanced" dir=right margin-left=10 width=100 }
+		place { start="QualityBalanced" control="QualityBeautiful" dir=right margin-left=10 width=100 }
+		place { start="QualityFast" control="AdvancedClientOptions" dir=down margin-top=10 }
+		place { start="AdvancedClientOptions" control="SupportInformationLabel" dir=right align=right margin-top=20 margin-right=20 }
 	}
 }

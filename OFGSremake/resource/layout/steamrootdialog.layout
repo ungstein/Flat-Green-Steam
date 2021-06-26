@@ -17,14 +17,6 @@
 			tooltiptext="#tooltip_view_fullscreen" 
 		}
 		
-		"New"
-		{
-		"ControlName" 	"URLLabel"
-		style="new_label"
-		"URLText"		"http://store.steampowered.com/uiupdate"
-		zpos=-2
-		}
-		
 		"UINavigatorPanel"
 		{
 			"ControlName"		"CUINavigatorPanel"
@@ -74,12 +66,11 @@
 	
 			style="ClientTitle"
 			"textAlignment"   "west"
-			"textAlignment"   "center" [$OSX]
 		}
 		
 		account_url
 		{
-			"ControlName"		"URLLabel"
+			"ControlName"	"URLLabel"
 			"fieldName"		"account_url"
 			"labelText"		"#Steam_Account_Name"
 			"URLText"		"steam://url/StoreAccount/"
@@ -118,13 +109,14 @@
 			style="view_friends"
 			textAlignment=east
 		}
-		online_friends
+
+		view_servers
 		{
-			ControlName=Label
-			labelText="#Steam_OnlineFriends"
-			style="online_friends"
+			ControlName=URLLabel
+			labelText="#steam_view_servers"
+			"URLText"	"steam://open/servers"
+			style="view_servers"
 			textAlignment=east
-			zpos=-1
 		}
 	}
 	
@@ -135,136 +127,8 @@
 		{
 			bgcolor=none
 			render_bg={}
-			image="skins/OFGSremake/graphics/piston"
+			image="graphics/piston"
 			inset="0 -20 0 0"
-		}
-		
-		new_label	
-		{			
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button"
-			inset="0 0 0 0"
-		}
-		
-		new_label:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover"
-			inset="0 0 0 0"
-		}
-
-		new_label_german
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_german"
-			inset="0 0 0 0"
-		}
-
-		new_label_german:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover_german"
-			inset="0 0 0 0"
-		}
-
-		new_label_french
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_french"
-			inset="0 0 0 0"
-		}
-
-		new_label_french:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover_french"
-			inset="0 0 0 0"
-		}
-		
-		new_label_italian
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_italian"
-			inset="0 0 0 0"
-		}
-
-		new_label_italian:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover_italian"
-			inset="0 0 0 0"
-		}
-		
-		new_label_spanish
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_spanish"
-			inset="0 0 0 0"
-		}
-
-		new_label_spanish:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover_spanish"
-			inset="0 0 0 0"
-		}
-		
-		new_label_danish
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_danish"
-			inset="0 0 0 0"
-		}
-
-		new_label_danish:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover_danish"
-			inset="0 0 0 0"
-		}
-		
-		new_label_norwegian
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_norwegian"
-			inset="0 0 0 0"
-		}
-
-		new_label_norwegian:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover_norwegian"
-			inset="0 0 0 0"
-		}
-		
-		new_label_swedish
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_swedish"
-			inset="0 0 0 0"
-		}
-
-		new_label_swedish:hover
-		{
-			bgcolor=none
-			render_bg={}
-			image="graphics/new_button_hover_swedish"
-			inset="0 0 0 0"
 		}
 		
 		RootMenu
@@ -275,7 +139,8 @@
 			font-family = basefont
 			inset = "4 0 0 0"
 			textcolor = White
-			render_bg {
+			render_bg
+			{
 				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, ButtonBorder )"  // top
 				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, ButtonBorder )"  // bottom
 				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, ButtonBorder )"  // left
@@ -296,7 +161,8 @@
 		
 		AddGameButton:selected {
 			textcolor = Over
-			render_bg {
+			render_bg
+			{
 				1="fill( x0 + 1, y0, x1 - 1, y0 + 1, Over )"  // top
 				2="fill( x0 + 1, y1 - 1, x1 - 1, y1, Over )"  // bottom
 				3="fill( x0, y0 + 1, x0 + 1, y1 - 1, Over )"  // left
@@ -314,7 +180,8 @@
 
 
 		CSteamRootDialog {
-			render_bg {
+			render_bg
+			{
 				1="fill( x0, y0, x1, y0 + 1, LightGreenBG )"  // top
 				2="fill( x0, y1 - 1, x1, y1, LightClayBG )"  // bottom
 				3="fill( x0, y0, x0 + 1, y1, LightClayBG )"  // left
@@ -330,26 +197,6 @@
 			
 		}
 
-		ClientTitle [$OSX]
-		{
-			font-family=basefont
-			font-size=15
-      		font-weight=400
-      		textcolor="textdisabled"
-      		bgcolor="none"
-      		inset="0 6 0 0"
-		}
-
-		ClientTitle:FrameFocus [$OSX]
-		{
-			font-family=basefont
-   			font-size=15
-   			font-weight=400
-   			textcolor="texthover"
-   			bgcolor="none"
-   			inset="0 6 0 0"
-		}
-
 		FrameTitle {
 
 		}
@@ -359,16 +206,68 @@
 		
 		view_friends
 		{
-			textcolor="LabelFocus"
-			bgcolor=none
-			font-family=basefont
-			font-size=13
-			font-style=regular,uppercase
+			font-family = basefont
+			inset = "4 0 0 0"
+			textcolor = White
+			render_bg
+			{
+			"1"		"image( x0, y0 +10, x1, y1, graphics/icon_button_friends )"
+			}
 		}
 
 		view_friends:Hover
 		{
-			 textcolor="white"
+			font-family = basefont
+			inset = "4 0 0 0"
+			textcolor="Maize"
+			render_bg
+			{
+			"1"		"image( x0, y0 +10, x1, y1, graphics/icon_button_friends_mouseover )"
+			}
+		}
+
+		view_friends:Selected
+		{
+			font-family = basefont
+			inset = "4 0 0 0"
+			textcolor="Maize"
+			render_bg
+			{
+			"1"		"image( x0, y0 +10, x1, y1, graphics/icon_button_friends_mousedown )"
+			}
+		}
+
+		view_servers
+		{
+			font-family = basefont
+			inset = "4 0 0 0"
+			textcolor = White
+			render_bg
+			{
+			"1"		"image( x0, y0 +10, x1, y1, graphics/icon_button_servers )"
+			}
+		}
+
+		view_servers:Hover
+		{
+			font-family = basefont
+			inset = "4 0 0 0"
+			textcolor="Maize"
+			render_bg
+			{
+			"1"		"image( x0, y0 +10, x1, y1, graphics/icon_button_servers_mouseover )"
+			}
+		}
+
+		view_servers:Selected
+		{
+			font-family = basefont
+			inset = "4 0 0 0"
+			textcolor="Maize"
+			render_bg
+			{
+			"1"		"image( x0, y0 +10, x1, y1, graphics/icon_button_servers_mousedown )"
+			}
 		}
 
 		online_friends 
@@ -380,29 +279,6 @@
 			font-style=regular
 		}
 
-		view_friends [$OSX]
-		{
-			textcolor="LabelFocus"
-			bgcolor="none"
-			font-family=basefont
-			font-size=13
-			font-weight=400
-			font-style=regular,uppercase
-			padding-top=6
-			padding-left=24
-			padding-bottom=30
-
-		}
-		
-		online_friends [$OSX]
-		{
-			textcolor="label2"
-			bgcolor="none"
-			font-family=basefont
-			font-size=13
-			font-style=regular
-		}
-		
 		support_alert
 		{
 			font-family=basefont
@@ -415,7 +291,8 @@
 			padding-top=6
 			inset="-8 -3 8 0"
 			render {}
-			render_bg {
+			render_bg
+			{
 				0="fill( x0, y0, x1, y1+1, support_flag_red )"
 				1="image( x0, y0, x0, y1, graphics/support_flag_left )"
 				2="image( x1, y0, x1, y1, graphics/support_flag_right )"
@@ -436,7 +313,8 @@
 			padding-top=6
 			inset="-8 -3 8 0"
 			render {}
-			render_bg {
+			render_bg
+			{
 				0="gradient( x0, y0, x1, y1+1, support_hover_red1, support_hover_red2 )"
 				1="image( x0, y0, x0, y1, graphics/support_flag_left_hover )"
 				2="image( x1, y0, x1, y1, graphics/support_flag_right_hover )"
@@ -444,74 +322,121 @@
 				4="image_scale( x0+3, y1, x1, y1+3, graphics/support_flag_bottom_hover )"
 			}
 		}
-		
-		inbox_button
+
+		inbox_button [!$OSX]
 		{
 			font-family=basefont
 			font-size=14
-			font-weight=1000
+			font-weight=800
 			font-style=none
 			textcolor=white
-			padding-left=2
-			padding-right=10
-			padding-top=6
-			
-			inset="-8 -3 8 0"
+
+			padding-top=2
+			padding-right=16
+
 			render {}
-			render_bg {
-				0="image( x1-20, y0+6, x1, y1, graphics/inbox_notification_inactive )"
+			render_bg
+			{
+				0="fill( x0, y0, x1, y1, GrayBG )"
+				1="image( x1-24, y0+4, x1-2, y1+2, graphics/inbox_notification_inactive )"
 			}
 		}
-
+		
 		inbox_button:hover
 		{
-			render_bg {
-				0="image( x1-20, y0+6, x1, y1, graphics/inbox_notification_inactive )"
+			render_bg
+			{
+				0="fill(  x0, y0, x1, y1, LightGrayBG )"
+				13="image( x1-24, y0+4, x1, y1, graphics/inbox_notification_inactive )"
 			}
 		}
 
 		inbox_button:selected
 		{
 			render_bg {
-				0="image( x1-20, y0+6, x1, y1, graphics/inbox_notification_inactive )"
+				// background fill
+				0="fill(  x0, y0, x1, y1, green6 )"
+				1="image( x1-24, y0+4, x1 -2, y1 + 2, graphics/inbox_notification_inactive )"
+			}
+		}
+
+		inbox_button:disabled
+		{
+			textcolor=labeldisabled
+			render_bg
+			{
+				// background fill
+				1="image( x1-24, y0+4, x1-2, y1+2, graphics/inbox_notification_inactive_disabled )"
 			}
 		}
 
 		inbox_button_active
 		{
-			inset="0 -3 8 0"
 			render_bg {
-				0="fill( x0, y0, x1, y1, inbox_active )"
-				1="image( x1-20, y0+6, x1, y1, graphics/inbox_notification )"
-				2="image( x0, y0, x0, y1, graphics/flag_left )"
-				3="image( x1, y0, x1, y1, graphics/flag_right )"
-				4="image_scale( x0+3, y0, x1, y0+3, graphics/flag_top )"
-				5="image_scale( x0+3, y1, x1, y1+3, graphics/flag_bottom )"
+				// background fill
+				0="fill( x0 , y0, x1, y1, green6 )"
+				1="image( x1-21, y0+4, x1-2, y1+2, graphics/inbox_notification )"
 			}
 		}
 
 		inbox_button_active:hover
 		{
-			inset="0 -3 8 0"
-			render_bg {
-				0="gradient( x0, y0, x1, y1, inbox_active_hover1, inbox_active_hover2  )"
-				1="image( x1-20, y0+6, x1, y1, graphics/inbox_notification )"
-				2="image( x0, y0, x0, y1, graphics/flag_left_hover )"
-				3="image( x1, y0, x1, y1, graphics/flag_right_hover )"
-				4="image_scale( x0+3, y0, x1, y0+3, graphics/flag_top_hover )"
-				5="image_scale( x0+3, y1, x1, y1+3, graphics/flag_bottom_hover )"
+			render_bg
+			{
+				// background fill
+				0="fill( x0 , y0, x1, y1, green5 )"
+				1="image( x1-21, y0+4, x1-2, y1+2, graphics/inbox_notification )"
 			}
 		}
 		inbox_button_active:selected
 		{
-			inset="0 -3 8 0"
-			render_bg {
-				0="gradient( x0, y0, x1, y1, inbox_active_hover1, inbox_active_hover2  )"
-				1="image( x1-20, y0+6, x1, y1, graphics/inbox_notification )"
-				2="image( x0, y0, x0, y1, graphics/flag_left_hover )"
-				3="image( x1, y0, x1, y1, graphics/flag_right_hover )"
-				4="image_scale( x0+3, y0, x1, y0+3, graphics/flag_top_hover )"
-				5="image_scale( x0+3, y1, x1, y1+3, graphics/flag_bottom_hover )"
+			render_bg
+			{
+				// background fill
+
+				0="fill(  x0, y0, x1, y1, green6 )"
+				1="image( x1-21, y0+4, x1-2, y1+2, graphics/inbox_notification )"
+			}
+		}
+
+		inbox_button_active:disabled
+		{
+			render {}
+			render_bg
+			{
+				// background fill
+				1="image( x1-21, y0+4, x1-2, y1+2, graphics/inbox_notification_disabled )"
+			}
+		}
+		
+		announcement_button
+		{
+			render_bg
+			{
+				// background fill
+				0="fill( x0, y0, x1, y1, GrayBG )"
+				1="image( x1-24, y0+4, x1 -2, y1 + 1, graphics/updatenone_notification )"
+			}
+		}
+
+
+		announcement_button:hover
+		{
+			render_bg
+			{
+				// background fill
+				0="fill( x0, y0, x1, y1, LightGrayBG )"
+				1="image( x1-24, y0+4, x1 -2, y1 + 1, graphics/updatenone_notification )"
+			}
+		}
+
+		announcement_button_active
+		{
+			render_bg
+			{
+				// background fill
+				0="fill(  x0, y0, x1, y1, AnnouncementBlue )"
+				1="image( x1-24, y0+4, x1 -2, y1 + 1, graphics/updatenew_notification )"
 			}
 		}
 		
@@ -539,15 +464,6 @@
 		{
 			textcolor=white
 		}
-		
-		FullscreenButton
-		{
-			padding-left=0
-			padding-top=0 
-			padding-right=0
-			padding-bottom=0
-			image="skins/OFGSremake/graphics/fullscreen_alt"
-		}
 	}
 	
 	colors
@@ -572,33 +488,34 @@
 	
 	layout
 	{
-		place { control="New" width=0 height=0 y=0}
-
 		place { control="UINavigatorPanel" width=max height=max margin-right=1 margin-left=1 margin-bottom=78 margin-top=38 }
 		
 		place { control="UIStatusPanel" region=bottom width=max height=max align=bottom margin-bottom=0 }
 		
 		place { control="MenuBar" align=top margin-top=22 margin-left=6 height=20}
+
+		// controls from left to right, otherwise depencencies are broken using end-right
 			
-		place { control="account_balance, account_balance_seperator, account_URL, universe_label" align=right margin-top=24 margin-right=88 spacing=3 }	
+		place [!$OSX] { control="frame_minimize,frame_maximize,frame_close" align=right margin-top=5 margin-right=2 spacing=-5 }
 
-		place { control="InboxButton" align=right end-right="account_balance" margin-top=18 margin-right=8 height=26 spacing=3 }
-		place { control="SupportAlert" align=right end-right="InboxButton" margin-top=1 margin-right=10 height=26 }
+		place [!$OSX] { control="fullscreen" align=right y=7 height=24 spacing=0 margin-right=16 margin-top=25 region="bigpicture"}
 
-		place { control="frame_minimize,frame_maximize,frame_close" align=right margin-top=5 margin-right=2 spacing=-5 }
+		place { control="startvr, exitvr" align=right end-right="fullscreen" margin-right=4 margin-top=10 }
 
-		region { name=bottom align=bottom width=max height=78 }
+		place { control="AccountButton" align=right end-right="startvr" margin-top=32 margin-right=8 height=24 }
+		place { control="InboxButton" align=right end-right="AccountButton" margin-top=32 margin-right=8 height=24 }
+		place { control="AnnouncementButton" align=right end-right="InboxButton" margin-top=32 margin-right=8 height=24 width=34 }
+		place { control="ParentalLockButton" align=right end-right="AnnouncementButton" margin-top=32 margin-right=8 height=24 width=44 }
+		place [!$OSX] { control="universe_label, EOLAlert, SupportAlert" spacing=8 align=right end-right="ParentalLockButton" margin-top=9 margin-right=8 height=24 }
+
+		region { name=bottom align=bottom width=max height=113 }
 		
 		place [!$OSX] { control="ImageLogo" align=right x=650 y=0 width=340 height=133 margin-top=0 margin-right=0}
-		place [$OSX] { control="ImageLogo" align=right x=650 y=0 width=340 height=133 margin-top=0 margin-right=0}	
 		
-		place { control="fullscreen" align=right y=7 height=24 spacing=0 margin-right=4 margin-top=28 width=30 region="bigpicture"}
+		place { control="add_game" x=16 y=7 region=bottom height=22}
 
-		place { control="add_game" x=14 y=16 region=bottom height=24}
-
-		place { control="FriendPanel" height=48 width=48 y=19 align=right margin-right=36 margin-top=-1 }
-		place { control="view_friends" y=38  align=right dir=right margin-right=88 }
-		place { control="online_friends" height=12 y=52  align=right dir=right margin-right=88 }
+		place { control="view_friends" height=64 width=122 region=bottom align=right dir=right margin-top=43 margin-right=16 }
+//		place { control="view_servers" height=64 width=122 region=bottom align=left dir=right margin-top=43 margin-left=0 }
 	
  		// the title bar is missing, so increase the size of the grip
 		place { control="frame_captiongrip" margin=2 width=max height=104 }

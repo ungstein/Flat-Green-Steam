@@ -21,10 +21,14 @@
 	
 	layout
 	{
-	  region { name="ProgressRegion" y=28 x=576 width=max height=28 align=top margin=0 margin-left=0 margin-right=21 }
-	 	region { name="statusRegion" y=36 x=576 width=max height=48 align=top margin=0 margin-right=21 } 
 	  
-	  place { control=StatusProgressbar region="ProgressRegion" width=max height=2 margin-top=0 align="top-center" }
-		place { control="StatusDownloading, StatusPaused, StatusComplete" region="statusRegion"  align="top-center" margin-top=0 }
+
+	  region { name="TitleRegion" width=max height=120 align=top margin=5 } 
+	  region { name="statusRegion" y=28 width=max height=25 align=bottom margin=6 } 
+	  region { name="ProgressRegion" y=75 width=max height=10 align=top margin=0 }
+	 	
+	  place { control="StatusDownloading" region="TitleRegion" align="top-center" margin-top=40 }
+	  place { control="StatusPaused, StatusComplete" region="StatusRegion"  align="top-center" margin-top=0 }
+	  place { control="StatusProgressbar" region="ProgressRegion" width=300 height=3 margin-top=0 align="top-center" }
 	}
 }
