@@ -500,7 +500,7 @@
 
 		place [!$OSX] { control="fullscreen" align=right y=7 height=24 spacing=0 margin-right=16 margin-top=25 region="bigpicture"}
 
-		place { control="startvr, exitvr" align=right end-right="fullscreen" margin-right=4 margin-top=10 }
+		place [!$OSX] { control="startvr, exitvr" align=right y=7 height=24 spacing=0 margin-right=8 margin-top=25 end-right="fullscreen"}
 
 		place { control="AccountButton" align=right end-right="startvr" margin-top=32 margin-right=8 height=24 }
 		place { control="InboxButton" align=right end-right="AccountButton" margin-top=32 margin-right=8 height=24 }
